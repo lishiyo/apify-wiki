@@ -19,27 +19,12 @@ Clone the repo.
 Follow instructions in https://sdk.apify.com/docs/guides/gettingstarted to install the apify library:
 ```
 npm -g install apify-cli
-cd apify-wars
+cd apify-wiki
 // *might* need an apify account, shouldn't need one
 ```
 
-First grab the list of country urls by uncommenting `getCountriesList`:
-```
-Apify.main(getCountriesList)
-// and comment out the line after it
-// Apify.main(getSingleCountryData)
-```
+First grab the list of country urls with `npm run init`. This stores all the country urls into `apify_storage/key_value_stores/countries/list.json`.
 
-Run `apify run --purge`.
-
-This should scrape the country urls into `apify_storage/key_value_stores/countries/list.json`.
-
-Then scrape the per-country tables by switching to the other function:
-```
-// Comment out 
-// Apify.main(getCountriesList)
-// and UN-comment out
-Apify.main(getSingleCountryData)
-```
-
-Some countries will error out because their link is following an non-conforming structure. 
+Then scrape the per-country tables by running `apify run --purge`.
+The successful retrievals appear in [successes.json](apify_storage/key_value_stores/countries/successes.json).
+Some countries will error out because their link is following an non-conforming structure. They appear in [errored_countries.json](apify_storage/key_value_stores/errors/errored_countries.json).

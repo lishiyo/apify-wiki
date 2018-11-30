@@ -1,0 +1,472 @@
+{
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Abkhazia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Afghanistan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Albania"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Algeria"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Angola"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Argentina"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Armenia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Australia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Austria"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Azerbaijan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Bahrain"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Bangladesh"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Belgium"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Belize"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Benin"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Bolivia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Botswana"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Brazil"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Bulgaria"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Burundi"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Byzantine_wars"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Cameroon"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Canada"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Central_African_Republic"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Chile"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Chinese_wars_and_battles"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Colombia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Costa_Rica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Cuba"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Cyprus"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Czechia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Democratic_Republic_of_the_Congo"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Denmark"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Djibouti"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Dominican_Republic"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Ecuador"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Egypt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_El_Salvador"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_England"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Eritrea"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Estonia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Ethiopia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Fiji"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Finland"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_France"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Gabon"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Gambia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Georgia_(country)"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Germany"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_in_Great_Britain"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Greece"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Guatemala"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Guinea-Bissau"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Guyana"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Haiti"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Honduras"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Hungary"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Iceland"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_India"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Indonesia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Iran"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Iraq"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_in_Ireland"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Republic_of_Ireland"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Israel"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Italy"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Ivory_Coast"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Jamaica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Japan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Jordan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Kazakhstan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Kenya"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Kosovo"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Kuwait"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Kyrgyzstan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Latvia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Lebanon"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Lesotho"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Liberia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Libya"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Lithuania"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Luxembourg"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Malawi"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Malaysia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Mali"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Malta"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Mauritania"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Mexico"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Moldova"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Mongolia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Mozambique"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Myanmar"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Nepal"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Netherlands"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_New_Zealand"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Nicaragua"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Niger"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Nigeria"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_North_Korea"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Norway"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Oman"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Ottoman_Empire"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Pakistan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_State_of_Palestine"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Panama"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Paraguay"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_People%27s_Republic_of_China"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Peru"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Philippines"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Poland"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Portugal"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Qatar"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Republic_of_China"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Republic_of_Macedonia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Republic_of_the_Congo"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Romania"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Roman_wars_and_battles"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Russia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_between_Russia_and_Sweden"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Rwanda"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Saudi_Arabia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Senegal"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Serbia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Somalia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Somaliland"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_South_Africa"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_South_Korea"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_South_Ossetia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_South_Sudan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_South_Yemen"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Spain"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Sri_Lanka"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Sudan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Suriname"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Sweden"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Switzerland"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Syria"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Tajikistan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Tanzania"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Thailand"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Tonga"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Trinidad_and_Tobago"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Tunisia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Turkey"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Uganda"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Ukraine"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_Arab_Emirates"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_Kingdom"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_States"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Uruguay"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Uzbekistan"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Venezuela"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Vietnam"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Yemen"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Yugoslavia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Zimbabwe"
+    }
+  ]
+}

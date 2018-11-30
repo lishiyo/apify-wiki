@@ -1,2 +1,4 @@
-apify_storage
+apify_storage/datasets/default
+apify_storage/key_value_stores/default
+apify_storage/request_queues
 node_modules

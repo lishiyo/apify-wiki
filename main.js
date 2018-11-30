@@ -10,66 +10,7 @@ const TEST_FILE = "single_country"
 const ERROR_DIR = "errors"
 const ERROR_FILE = "errored_countries"
 
-// Apify.main(getCountriesList)
 Apify.main(getSingleCountryData)
-
-// Grab the list of countries => store in data
-async function getCountriesList() {
-    // Static list.
-    const input = await Apify.getValue('INPUT');
-    if (!input) throw new Error('Have you passed the correct INPUT ?');
-    const { sources } = input;
-    const requestList = new Apify.RequestList({ sources });
-    await requestList.initialize();
-
-    // Create crawler.
-    const crawler = new Apify.PuppeteerCrawler({
-        // Static initial list
-        requestList,
-
-        launchPuppeteerOptions: { 
-            // headless: true,
-            maxRequestRetries: 1,
-        },
-
-        handlePageFunction: async ({ page, request }) => {
-            const hrefs = await page.evaluate(() => {
-                const elements = document.querySelectorAll('.mw-category-group a');
-                
-                return Array
-                .from(elements)
-                // we only want the actual wars
-                .filter(element => {
-                    return element.getAttribute("href").includes("war")
-                })
-                .map(element => "https://en.wikipedia.org" + element.getAttribute("href") );
-            });
-            console.log("TOTAL LINKS FOUND: ", hrefs.length);
-            // skip 
-
-            // Now save the data!
-            const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
-            const countries = hrefs.map(href => {
-                return {
-                    url: href,
-                }
-            });
-            const list = {
-                sources: countries
-            };
-
-            await store.setValue(COUNTRIES_FILE, list);
-        },
-
-        // If request failed 4 times then this function is executed.
-        handleFailedRequestFunction: async ({ request }) => {
-            console.log(`Request ${request.url} failed 4 times`);
-        },
-    });
-
-    // Run crawler.
-    await crawler.run();
-}
 
 async function getSingleCountryData() {
     const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
