@@ -2,6 +2,7 @@ const Apify = require('apify');
 
 const COUNTRIES_DIR = "countries"
 const COUNTRIES_FILE = "list"
+const COUNTRIES_SUCCESS_FILE = "successes"
 
 const TEST_DIR = "test"
 const TEST_FILE = "single_country"
@@ -165,15 +166,13 @@ async function getSingleCountryData() {
             const winLossRatio = (victoriesCount/parseFloat(defeats.length)).toFixed(2);
             const winPercentage = ((victoriesCount/parseFloat(allRows.length)).toFixed(2))*100;
 
-
             if (victoriesCount === 0 && defeats.length === 0) {
                 // probably messed up, save to another file
                 await storeError(country, request.url);
             } else {
                 console.log(`SUCCESS!! ${country} with ${allRows.length} total => ${defeats.length} defeats, ${victoriesCount} victories => winPercentage: ${winPercentage}`);
 
-                // Save data.
-                await Apify.pushData({
+                const data = {
                     url: request.url,
                     title,
                     country,
@@ -181,10 +180,14 @@ async function getSingleCountryData() {
                     totalDefeats: defeats.length,
                     winLossRatio,
                     winPercentage,
-                });
+                };
 
+                // Save individual data.
+                await Apify.pushData(data);
+
+                // Save to flat file.
+                await storeSuccess(data);
             }
-
         },
 
         // If request failed 4 times then this function is executed.
@@ -202,15 +205,27 @@ async function storeError(country, url) {
     console.log(`ERROR === ${country}`)
     // Save the messed up countries
     const store = await Apify.openKeyValueStore(ERROR_DIR);
-    const currentErrors = await store.getValue(ERROR_FILE);
-    const erroredCountries = currentErrors.sources; // array
+    const current = await store.getValue(ERROR_FILE);
+    const sources = current.sources; // array
     // push ours onto the error
-    erroredCountries.push({
+    sources.push({
         url: url,
     });
     const list = {
-        sources: erroredCountries
+        sources: sources
     };
 
     await store.setValue(ERROR_FILE, list);
+}
+
+async function storeSuccess(data) {
+     const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
+     const current = await store.getValue(COUNTRIES_SUCCESS_FILE);
+     const sources = current.sources; // array
+     sources.push(data)
+
+     const list = {
+        sources: sources
+    };
+    await store.setValue(COUNTRIES_SUCCESS_FILE, list);
 }
