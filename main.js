@@ -110,7 +110,7 @@ async function getSingleCountryData() {
             // grab the country from the title
             const regex = title.match("List of wars (?:involving|in) (.*) -")
             if (!regex || regex.length < 2) {
-                await storeError(country, request.url);
+                await storeError("UNKNOWN", request.url);
                 return;
             }
             const country = regex[1];
