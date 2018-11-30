@@ -1,7 +1,6 @@
 const Apify = require('apify');
 
 const COUNTRIES_DIR = "countries"
-const COUNTRIES_FILE = "list"
 const COUNTRIES_SUCCESS_FILE = "successes"
 
 const TEST_DIR = "test"
@@ -10,13 +9,16 @@ const TEST_FILE = "single_country"
 const ERROR_DIR = "errors"
 const ERROR_FILE = "errored_countries"
 
-Apify.main(getSingleCountryData)
+Apify.main(getPerCountryResults)
 
-async function getSingleCountryData() {
-    const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
-    const input = await store.getValue(COUNTRIES_FILE);
-    // const store = await Apify.openKeyValueStore(TEST_DIR);
-    // const input = await store.getValue(TEST_FILE);
+async function getPerCountryResults() {
+    // First clear the successes and errors files for a clean run
+    await clearResultFiles();
+
+    // const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
+    // const input = await store.getValue(COUNTRIES_FILE);
+    const store = await Apify.openKeyValueStore(TEST_DIR);
+    const input = await store.getValue(TEST_FILE);
     
     if (!input) throw new Error('Have you passed the correct INPUT ?');
     const { sources } = input;
@@ -63,6 +65,7 @@ async function getSingleCountryData() {
                 const wikitables = document.querySelectorAll('table')
                 
                 // loop through all tables for those with RESULT column
+                // map of columnIdx => [table1, table2]
                 let warTables = new Map();
                 
                 for (let i = 0; i < wikitables.length; i++) {
@@ -73,7 +76,9 @@ async function getSingleCountryData() {
                         let columnName = columns[j].innerText.toLowerCase();
                         if (columnName.includes("result") || columnName.includes("outcome") || columnName.includes("conclusion")) {
                             // add 1 because css isn't zero-indexed
-                            warTables.set(j+1, currentTable);
+                            let currentTables = warTables.has(j+1) ? warTables.get(j+1) : [];
+                            currentTables.push(currentTable);
+                            warTables.set(j+1, currentTables);
                             continue;
                         }
                     }
@@ -81,21 +86,24 @@ async function getSingleCountryData() {
 
                 // loop through each 
                 let elements = [];
-                for (let [resultColumnIndex, table] of warTables) {
-                    const tableElements = table.querySelectorAll(`td:nth-child(${resultColumnIndex})`);
-                    elements = elements.concat(Array.from(tableElements));
+                for (let [resultColumnIndex, tables] of warTables) {
+                    tables.forEach(table => {
+                        const tableElements = table.querySelectorAll(`td:nth-child(${resultColumnIndex})`);
+                        elements = elements.concat(Array.from(tableElements));
+                    })
                 }
                 
                 return elements.map(element => element.innerText.toString().toLowerCase() )
             });
         
+            console.log("allRows", allRows);
             // calculate how many contain victory and defeat regex
             const defeats = [];
             const victories = [];
             for (let i = 0; i < allRows.length; i++) {
                 let txt = allRows[i];
-                let hasDefeated = txt.includes(DEFEATED_MARKER);
                 let hasVictory = txt.includes(VICTORY_MARKER);
+                let hasDefeated = !hasVictory && txt.includes(DEFEATED_MARKER);
 
                 if (hasDefeated) {
                     defeats.push(txt)
@@ -119,6 +127,7 @@ async function getSingleCountryData() {
                     country,
                     totalWars: allRows.length,
                     totalDefeats: defeats.length,
+                    totalVictories: victoriesCount,
                     winLossRatio,
                     winPercentage,
                 };
@@ -169,4 +178,14 @@ async function storeSuccess(data) {
         sources: sources
     };
     await store.setValue(COUNTRIES_SUCCESS_FILE, list);
+}
+
+async function clearResultFiles() {
+    const success_store = await Apify.openKeyValueStore(COUNTRIES_DIR);
+    const errors_store = await Apify.openKeyValueStore(ERROR_DIR);
+    const list = {
+        sources: []
+    };
+    await success_store.setValue(COUNTRIES_SUCCESS_FILE, list);
+    await errors_store.setValue(ERROR_FILE, list);
 }
