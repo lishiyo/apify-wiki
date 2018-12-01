@@ -1,7 +1,10 @@
 const Apify = require('apify');
 
 const COUNTRIES_DIR = "countries"
+const COUNTRIES_FILE = "list"
 const COUNTRIES_SUCCESS_FILE = "successes"
+const TOP_COUNTRY_THRESHOLD = 20 // 20+ victories => store in main file
+const COUNTRIES_TOP_SUCCESS_FILE = "successes_top"
 
 const TEST_DIR = "test"
 const TEST_FILE = "single_country"
@@ -14,42 +17,42 @@ Apify.main(getPerCountryResults)
 async function getPerCountryResults() {
     // First clear the successes and errors files for a clean run
     await clearResultFiles();
-
-    // const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
-    // const input = await store.getValue(COUNTRIES_FILE);
-    const store = await Apify.openKeyValueStore(TEST_DIR);
-    const input = await store.getValue(TEST_FILE);
+    
+    const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
+    const input = await store.getValue(COUNTRIES_FILE);
+    // const store = await Apify.openKeyValueStore(TEST_DIR);
+    // const input = await store.getValue(TEST_FILE);
     
     if (!input) throw new Error('Have you passed the correct INPUT ?');
     const { sources } = input;
-
+    
     const requestList = new Apify.RequestList({ sources });
     await requestList.initialize();
-
+    
     // Get queue and enqueue first url.
     const requestQueue = await Apify.openRequestQueue();
     // await requestQueue.addRequest(new Apify.Request({ url: URL }));
-
+    
     // Create crawler.
     const crawler = new Apify.PuppeteerCrawler({
         // Static initial list
         requestList,
-
+        
         // Queue to stack more urls onto
         requestQueue,
-
+        
         launchPuppeteerOptions: { 
             headless: true,
             maxRequestRetries: 1,
         },
-
+        
         // This page is executed for each request.
         // If request failes then it's retried 3 times.
         // Parameter page is Puppeteers page object with loaded page.
         handlePageFunction: async ({ page, request }) => {
             const DEFEATED_MARKER = 'defeat';
             const VICTORY_MARKER = 'victory';
-
+            
             const title = await page.title();
             // grab the country from the title
             const regex = title.match("List of wars (?:involving|in) (.*) -")
@@ -58,7 +61,7 @@ async function getPerCountryResults() {
                 return;
             }
             const country = regex[1];
-
+            
             // https://pptr.dev/#?product=Puppeteer&version=v1.10.0&show=api-class-elementhandle
             // const allRows = await page.$$(ALL_ROW_SELECTOR);
             const allRows = await page.evaluate(() => {
@@ -83,7 +86,7 @@ async function getPerCountryResults() {
                         }
                     }
                 }
-
+                
                 // loop through each 
                 let elements = [];
                 for (let [resultColumnIndex, tables] of warTables) {
@@ -95,8 +98,7 @@ async function getPerCountryResults() {
                 
                 return elements.map(element => element.innerText.toString().toLowerCase() )
             });
-        
-            console.log("allRows", allRows);
+            
             // calculate how many contain victory and defeat regex
             const defeats = [];
             const victories = [];
@@ -104,7 +106,7 @@ async function getPerCountryResults() {
                 let txt = allRows[i];
                 let hasVictory = txt.includes(VICTORY_MARKER);
                 let hasDefeated = !hasVictory && txt.includes(DEFEATED_MARKER);
-
+                
                 if (hasDefeated) {
                     defeats.push(txt)
                 } else if (hasVictory) {
@@ -114,13 +116,13 @@ async function getPerCountryResults() {
             const victoriesCount = victories.length;
             const winLossRatio = (victoriesCount/parseFloat(defeats.length)).toFixed(2);
             const winPercentage = ((victoriesCount/parseFloat(allRows.length)).toFixed(2))*100;
-
+            
             if (victoriesCount === 0 && defeats.length === 0) {
                 // probably messed up, save to another file
                 await storeError(country, request.url);
             } else {
                 console.log(`SUCCESS!! ${country} with ${allRows.length} total => ${defeats.length} defeats, ${victoriesCount} victories => winPercentage: ${winPercentage}`);
-
+                
                 const data = {
                     url: request.url,
                     title,
@@ -131,21 +133,21 @@ async function getPerCountryResults() {
                     winLossRatio,
                     winPercentage,
                 };
-
+                
                 // Save individual data.
                 await Apify.pushData(data);
-
+                
                 // Save to flat file.
-                await storeSuccess(data);
+                await storeSuccess(data, victoriesCount >= TOP_COUNTRY_THRESHOLD);
             }
         },
-
+        
         // If request failed 4 times then this function is executed.
         handleFailedRequestFunction: async ({ request }) => {
             console.log(`Request ${request.url} failed 4 times`);
         },
     });
-
+    
     // Run crawler.
     await crawler.run();
 }
@@ -164,20 +166,30 @@ async function storeError(country, url) {
     const list = {
         sources: sources
     };
-
+    
     await store.setValue(ERROR_FILE, list);
 }
 
-async function storeSuccess(data) {
-     const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
-     const current = await store.getValue(COUNTRIES_SUCCESS_FILE);
-     const sources = current.sources; // array
-     sources.push(data)
-
-     const list = {
+async function storeSuccess(data, storeInTop) {
+    const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
+    const current = await store.getValue(COUNTRIES_SUCCESS_FILE);
+    const sources = current.sources; // array
+    sources.push(data)
+    
+    const list = {
         sources: sources
     };
     await store.setValue(COUNTRIES_SUCCESS_FILE, list);
+    
+    // if the victory count is >= 20, store it in the top file as well
+    if (storeInTop) {
+        const currentTop = await store.getValue(COUNTRIES_TOP_SUCCESS_FILE);
+        currentTop.sources.push(data)
+        const currentTopList = {
+            sources: currentTop.sources
+        }
+        await currentTop.setValue(COUNTRIES_TOP_SUCCESS_FILE, currentTopList);
+    }
 }
 
 async function clearResultFiles() {
