@@ -1,4 +1,304 @@
 {
-    "sources": [
-    ]
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Albania",
+      "title": "List of wars involving Albania - Wikipedia",
+      "country": "Albania",
+      "totalWars": 99,
+      "totalDefeats": 43,
+      "totalVictories": 43,
+      "winLossRatio": "1.00",
+      "winPercentage": 43
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Armenia",
+      "title": "List of wars involving Armenia - Wikipedia",
+      "country": "Armenia",
+      "totalWars": 30,
+      "totalDefeats": 4,
+      "totalVictories": 22,
+      "winLossRatio": "5.50",
+      "winPercentage": 73
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Austria",
+      "title": "List of wars involving Austria - Wikipedia",
+      "country": "Austria",
+      "totalWars": 88,
+      "totalDefeats": 32,
+      "totalVictories": 45,
+      "winLossRatio": "1.41",
+      "winPercentage": 51
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Brazil",
+      "title": "List of wars involving Brazil - Wikipedia",
+      "country": "Brazil",
+      "totalWars": 28,
+      "totalDefeats": 0,
+      "totalVictories": 26,
+      "winLossRatio": "Infinity",
+      "winPercentage": 93
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Bulgaria",
+      "title": "List of wars involving Bulgaria - Wikipedia",
+      "country": "Bulgaria",
+      "totalWars": 58,
+      "totalDefeats": 7,
+      "totalVictories": 39,
+      "winLossRatio": "5.57",
+      "winPercentage": 67
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Czechia",
+      "title": "List of wars involving Czechia - Wikipedia",
+      "country": "Czechia",
+      "totalWars": 78,
+      "totalDefeats": 20,
+      "totalVictories": 46,
+      "winLossRatio": "2.30",
+      "winPercentage": 59
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Denmark",
+      "title": "List of wars involving Denmark - Wikipedia",
+      "country": "Denmark",
+      "totalWars": 60,
+      "totalDefeats": 15,
+      "totalVictories": 32,
+      "winLossRatio": "2.13",
+      "winPercentage": 53
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_England",
+      "title": "List of wars involving England - Wikipedia",
+      "country": "England",
+      "totalWars": 57,
+      "totalDefeats": 9,
+      "totalVictories": 36,
+      "winLossRatio": "4.00",
+      "winPercentage": 63
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_France",
+      "title": "List of wars involving France - Wikipedia",
+      "country": "France",
+      "totalWars": 80,
+      "totalDefeats": 11,
+      "totalVictories": 57,
+      "winLossRatio": "5.18",
+      "winPercentage": 71
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Georgia_(country)",
+      "title": "List of wars involving Georgia (country) - Wikipedia",
+      "country": "Georgia (country)",
+      "totalWars": 255,
+      "totalDefeats": 59,
+      "totalVictories": 142,
+      "winLossRatio": "2.41",
+      "winPercentage": 56.00000000000001
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Hungary",
+      "title": "List of wars involving Hungary - Wikipedia",
+      "country": "Hungary",
+      "totalWars": 113,
+      "totalDefeats": 18,
+      "totalVictories": 53,
+      "winLossRatio": "2.94",
+      "winPercentage": 47
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Iran",
+      "title": "List of wars involving Iran - Wikipedia",
+      "country": "Iran",
+      "totalWars": 66,
+      "totalDefeats": 19,
+      "totalVictories": 32,
+      "winLossRatio": "1.68",
+      "winPercentage": 48
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_India",
+      "title": "List of wars involving India - Wikipedia",
+      "country": "India",
+      "totalWars": 107,
+      "totalDefeats": 6,
+      "totalVictories": 93,
+      "winLossRatio": "15.50",
+      "winPercentage": 87
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Italy",
+      "title": "List of wars involving Italy - Wikipedia",
+      "country": "Italy",
+      "totalWars": 31,
+      "totalDefeats": 1,
+      "totalVictories": 27,
+      "winLossRatio": "27.00",
+      "winPercentage": 87
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Japan",
+      "title": "List of wars involving Japan - Wikipedia",
+      "country": "Japan",
+      "totalWars": 37,
+      "totalDefeats": 7,
+      "totalVictories": 28,
+      "winLossRatio": "4.00",
+      "winPercentage": 76
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Malta",
+      "title": "List of wars involving Malta - Wikipedia",
+      "country": "Malta",
+      "totalWars": 22,
+      "totalDefeats": 0,
+      "totalVictories": 21,
+      "winLossRatio": "Infinity",
+      "winPercentage": 95
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Mexico",
+      "title": "List of wars involving Mexico - Wikipedia",
+      "country": "Mexico",
+      "totalWars": 32,
+      "totalDefeats": 5,
+      "totalVictories": 22,
+      "winLossRatio": "4.40",
+      "winPercentage": 69
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Mongolia",
+      "title": "List of wars involving Mongolia - Wikipedia",
+      "country": "Mongolia",
+      "totalWars": 112,
+      "totalDefeats": 47,
+      "totalVictories": 54,
+      "winLossRatio": "1.15",
+      "winPercentage": 48
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Netherlands",
+      "title": "List of wars involving the Netherlands - Wikipedia",
+      "country": "the Netherlands",
+      "totalWars": 78,
+      "totalDefeats": 4,
+      "totalVictories": 70,
+      "winLossRatio": "17.50",
+      "winPercentage": 90
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Norway",
+      "title": "List of wars involving Norway - Wikipedia",
+      "country": "Norway",
+      "totalWars": 56,
+      "totalDefeats": 20,
+      "totalVictories": 29,
+      "winLossRatio": "1.45",
+      "winPercentage": 52
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Portugal",
+      "title": "List of wars involving Portugal - Wikipedia",
+      "country": "Portugal",
+      "totalWars": 70,
+      "totalDefeats": 13,
+      "totalVictories": 53,
+      "winLossRatio": "4.08",
+      "winPercentage": 76
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_Philippines",
+      "title": "List of wars involving the Philippines - Wikipedia",
+      "country": "the Philippines",
+      "totalWars": 108,
+      "totalDefeats": 38,
+      "totalVictories": 63,
+      "winLossRatio": "1.66",
+      "winPercentage": 57.99999999999999
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Poland",
+      "title": "List of wars involving Poland - Wikipedia",
+      "country": "Poland",
+      "totalWars": 302,
+      "totalDefeats": 73,
+      "totalVictories": 148,
+      "winLossRatio": "2.03",
+      "winPercentage": 49
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Saudi_Arabia",
+      "title": "List of wars involving Saudi Arabia - Wikipedia",
+      "country": "Saudi Arabia",
+      "totalWars": 38,
+      "totalDefeats": 12,
+      "totalVictories": 23,
+      "winLossRatio": "1.92",
+      "winPercentage": 61
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Russia",
+      "title": "List of wars involving Russia - Wikipedia",
+      "country": "Russia",
+      "totalWars": 167,
+      "totalDefeats": 32,
+      "totalVictories": 112,
+      "winLossRatio": "3.50",
+      "winPercentage": 67
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Spain",
+      "title": "List of wars involving Spain - Wikipedia",
+      "country": "Spain",
+      "totalWars": 258,
+      "totalDefeats": 63,
+      "totalVictories": 170,
+      "winLossRatio": "2.70",
+      "winPercentage": 66
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Ukraine",
+      "title": "List of wars involving Ukraine - Wikipedia",
+      "country": "Ukraine",
+      "totalWars": 115,
+      "totalDefeats": 33,
+      "totalVictories": 45,
+      "winLossRatio": "1.36",
+      "winPercentage": 39
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_Kingdom",
+      "title": "List of wars involving the United Kingdom - Wikipedia",
+      "country": "the United Kingdom",
+      "totalWars": 156,
+      "totalDefeats": 18,
+      "totalVictories": 115,
+      "winLossRatio": "6.39",
+      "winPercentage": 74
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_Vietnam",
+      "title": "List of wars involving Vietnam - Wikipedia",
+      "country": "Vietnam",
+      "totalWars": 73,
+      "totalDefeats": 15,
+      "totalVictories": 51,
+      "winLossRatio": "3.40",
+      "winPercentage": 70
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_States",
+      "title": "List of wars involving the United States - Wikipedia",
+      "country": "the United States",
+      "totalWars": 118,
+      "totalDefeats": 10,
+      "totalVictories": 97,
+      "winLossRatio": "9.70",
+      "winPercentage": 82
+    }
+  ]
 }

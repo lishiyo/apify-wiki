@@ -10,6 +10,7 @@
 	"scripts": {
 		"start": "node main.js",
 		"init": "node init.js",
+		"testrun": "node main.js testrun=true",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {

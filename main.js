@@ -3,7 +3,7 @@ const Apify = require('apify');
 const COUNTRIES_DIR = "countries"
 const COUNTRIES_FILE = "list"
 const COUNTRIES_SUCCESS_FILE = "successes"
-const TOP_COUNTRY_THRESHOLD = 20 // 20+ victories => store in main file
+const TOP_COUNTRY_THRESHOLD = 20 
 const COUNTRIES_TOP_SUCCESS_FILE = "successes_top"
 
 const TEST_DIR = "test"
@@ -12,34 +12,38 @@ const TEST_FILE = "single_country"
 const ERROR_DIR = "errors"
 const ERROR_FILE = "errored_countries"
 
+// Flip this flag to run the test folder input instead
+const TEST_RUN = false;
+
 Apify.main(getPerCountryResults)
 
+/**
+ * Walks through every country url in the COUNTRIES_FILE list and scrapes their tables.
+ * Stores the successful scrapes in COUNTRIES_SUCCESS_FILE.
+ * Stores the errored scrapes in ERROR_FILE
+ */
 async function getPerCountryResults() {
     // First clear the successes and errors files for a clean run
     await clearResultFiles();
     
-    const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
-    const input = await store.getValue(COUNTRIES_FILE);
-    // const store = await Apify.openKeyValueStore(TEST_DIR);
-    // const input = await store.getValue(TEST_FILE);
+    let store, input;
+    if (TEST_RUN) {
+        store = await Apify.openKeyValueStore(TEST_DIR);
+        input = await store.getValue(TEST_FILE);
+    } else {
+        store = await Apify.openKeyValueStore(COUNTRIES_DIR);
+        input = await store.getValue(COUNTRIES_FILE);
+    }
     
     if (!input) throw new Error('Have you passed the correct INPUT ?');
     const { sources } = input;
-    
     const requestList = new Apify.RequestList({ sources });
     await requestList.initialize();
     
-    // Get queue and enqueue first url.
-    const requestQueue = await Apify.openRequestQueue();
-    // await requestQueue.addRequest(new Apify.Request({ url: URL }));
-    
-    // Create crawler.
+    // Create puppeteer crawler.
     const crawler = new Apify.PuppeteerCrawler({
         // Static initial list
         requestList,
-        
-        // Queue to stack more urls onto
-        requestQueue,
         
         launchPuppeteerOptions: { 
             headless: true,
@@ -47,14 +51,13 @@ async function getPerCountryResults() {
         },
         
         // This page is executed for each request.
-        // If request failes then it's retried 3 times.
         // Parameter page is Puppeteers page object with loaded page.
         handlePageFunction: async ({ page, request }) => {
-            const DEFEATED_MARKER = 'defeat';
-            const VICTORY_MARKER = 'victory';
-            
+            const DEFEATED_MARKER = "defeat";
+            const VICTORY_MARKER = "victory";
+           
+            // Figure out the country name from the title.
             const title = await page.title();
-            // grab the country from the title
             const regex = title.match("List of wars (?:involving|in) (.*) -")
             if (!regex || regex.length < 2) {
                 await storeError("UNKNOWN", request.url);
@@ -68,26 +71,29 @@ async function getPerCountryResults() {
                 const wikitables = document.querySelectorAll('table')
                 
                 // loop through all tables for those with RESULT column
-                // map of columnIdx => [table1, table2]
+                // Map of "result column index" => [table1, table2] 
                 let warTables = new Map();
                 
                 for (let i = 0; i < wikitables.length; i++) {
                     let currentTable = wikitables[i];
-                    // header column
                     let columns = currentTable.rows[0].cells;
+                    // The header row may have some columns spanning multiple
+                    // of the final content columns, so need to calculate final column index
+                    let finalColumnCount = 0; // reset for each table
                     for (let j = 0; j < columns.length; j++) {
                         let columnName = columns[j].innerText.toLowerCase();
+                        let colSpan = columns[j].hasAttribute('colspan') ? parseInt(columns[j].getAttribute('colspan')) : 1
+                        finalColumnCount += colSpan
                         if (columnName.includes("result") || columnName.includes("outcome") || columnName.includes("conclusion")) {
-                            // add 1 because css isn't zero-indexed
-                            let currentTables = warTables.has(j+1) ? warTables.get(j+1) : [];
+                            let currentTables = warTables.has(finalColumnCount) ? warTables.get(finalColumnCount) : [];
                             currentTables.push(currentTable);
-                            warTables.set(j+1, currentTables);
+                            warTables.set(finalColumnCount, currentTables);
                             continue;
                         }
                     }
                 }
                 
-                // loop through each 
+                // loop through each table and grab the text from their result column index
                 let elements = [];
                 for (let [resultColumnIndex, tables] of warTables) {
                     tables.forEach(table => {
@@ -96,21 +102,34 @@ async function getPerCountryResults() {
                     })
                 }
                 
-                return elements.map(element => element.innerText.toString().toLowerCase() )
+                return elements.map(element => element.innerText.toString())
             });
             
             // calculate how many contain victory and defeat regex
             const defeats = [];
             const victories = [];
             for (let i = 0; i < allRows.length; i++) {
-                let txt = allRows[i];
-                let hasVictory = txt.includes(VICTORY_MARKER);
-                let hasDefeated = !hasVictory && txt.includes(DEFEATED_MARKER);
+                let txt = allRows[i].toLowerCase();
+                let victoryIdx = txt.indexOf(VICTORY_MARKER);
+                let defeatIdx = txt.indexOf(DEFEATED_MARKER);
+                if (victoryIdx === -1 && defeatIdx === -1) {
+                    // no victory or defeat mentioned at all
+                    continue;
+                }
                 
-                if (hasDefeated) {
-                    defeats.push(txt)
-                } else if (hasVictory) {
+                // Victory or Defeat as a "title" takes precendence
+                // if none, then whichever one comes first or solo in the text
+                let definitelyVictory = (allRows[i].includes("<b>Victory</b>") || allRows[i].includes("Victory"))
+                let definitelyDefeat = (allRows[i].includes("<b>Defeat</b>") || allRows[i].includes("Defeat"))
+
+                if (definitelyVictory) {
                     victories.push(txt)
+                } else if (definitelyDefeat) {
+                    defeats.push(txt)
+                } else if (victoryIdx >= 0 && (defeatIdx === -1 || victoryIdx <= defeatIdx)) {
+                    victories.push(txt)
+                } else if (defeatIdx >= 0 && (victoryIdx === -1 || defeatIdx <= victoryIdx)) {
+                    defeats.push(txt)
                 }
             }
             const victoriesCount = victories.length;
@@ -118,7 +137,7 @@ async function getPerCountryResults() {
             const winPercentage = ((victoriesCount/parseFloat(allRows.length)).toFixed(2))*100;
             
             if (victoriesCount === 0 && defeats.length === 0) {
-                // probably messed up, save to another file
+                // no victory or defeat anywhere - probably something messed up in scrape, store in file to investigate
                 await storeError(country, request.url);
             } else {
                 console.log(`SUCCESS!! ${country} with ${allRows.length} total => ${defeats.length} defeats, ${victoriesCount} victories => winPercentage: ${winPercentage}`);
@@ -134,15 +153,15 @@ async function getPerCountryResults() {
                     winPercentage,
                 };
                 
-                // Save individual data.
+                // Save individual country data.
                 await Apify.pushData(data);
                 
-                // Save to flat file.
+                // Append to our main file.
                 await storeSuccess(data, victoriesCount >= TOP_COUNTRY_THRESHOLD);
             }
         },
         
-        // If request failed 4 times then this function is executed.
+        // If request failed X times then this function is executed.
         handleFailedRequestFunction: async ({ request }) => {
             console.log(`Request ${request.url} failed 4 times`);
         },
@@ -152,10 +171,14 @@ async function getPerCountryResults() {
     await crawler.run();
 }
 
+/**
+ * Add the country url to the errors file.
+ * 
+ * @param {string} country The title of the country
+ * @param {string} url The url to save
+ */
 async function storeError(country, url) {
-    // probably messed up, save to another file
     console.log(`ERROR === ${country}`)
-    // Save the messed up countries
     const store = await Apify.openKeyValueStore(ERROR_DIR);
     const current = await store.getValue(ERROR_FILE);
     const sources = current.sources; // array
@@ -170,6 +193,11 @@ async function storeError(country, url) {
     await store.setValue(ERROR_FILE, list);
 }
 
+/**
+ * Add the country data to the final results file.
+ * @param {object} data The country result data.
+ * @param {boolean} storeInTop Whether to save the country data to the "top countries" file as well.
+ */
 async function storeSuccess(data, storeInTop) {
     const store = await Apify.openKeyValueStore(COUNTRIES_DIR);
     const current = await store.getValue(COUNTRIES_SUCCESS_FILE);
@@ -188,10 +216,13 @@ async function storeSuccess(data, storeInTop) {
         const currentTopList = {
             sources: currentTop.sources
         }
-        await currentTop.setValue(COUNTRIES_TOP_SUCCESS_FILE, currentTopList);
+        await store.setValue(COUNTRIES_TOP_SUCCESS_FILE, currentTopList);
     }
 }
 
+/**
+ * Clear out the data files on each run.
+ */
 async function clearResultFiles() {
     const success_store = await Apify.openKeyValueStore(COUNTRIES_DIR);
     const errors_store = await Apify.openKeyValueStore(ERROR_DIR);
@@ -199,5 +230,6 @@ async function clearResultFiles() {
         sources: []
     };
     await success_store.setValue(COUNTRIES_SUCCESS_FILE, list);
+    await success_store.setValue(COUNTRIES_TOP_SUCCESS_FILE, list);
     await errors_store.setValue(ERROR_FILE, list);
 }
