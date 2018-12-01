@@ -30,6 +30,7 @@ Follow instructions in https://sdk.apify.com/docs/guides/gettingstarted to insta
 npm -g install apify-cli
 git clone https://github.com/lishiyo/apify-wiki.git
 cd apify-wiki
+npm install
 ```
 
 First grab the list of country urls from the index page by running:
@@ -53,6 +54,7 @@ Some countries will error out because their link is following an non-conforming 
 
 ### Todos
 
-- fix those errored out countries
+- fix those errored out countries if necessary
 - parse into more readable, excel-sortable format as cv
+- can we figure out the final result in a less naive way and cut down on the false positives/negatives?
 - this code is gross, refactor
